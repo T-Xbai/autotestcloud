@@ -1,0 +1,22 @@
+server:
+  port: 8889
+
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+#   控制台打印 sql 时格式化展示
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://47.110.38.252:3306/testcloud?characterEncoding=utf-8&useSSL=false
+  jackson:
+    default-property-inclusion: non_null

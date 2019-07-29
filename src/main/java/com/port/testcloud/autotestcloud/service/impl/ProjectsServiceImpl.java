@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * @ClassName: ProjectsServiceImpl
@@ -28,7 +30,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Override
     public Projects findOne(String projectId) {
-        return repository.findById(projectId).get();
+        return repository.findById(projectId).orElse(new Projects());
     }
 
     @Override
@@ -51,7 +53,6 @@ public class ProjectsServiceImpl implements ProjectsService {
                     projects.getProjectName(), queryProjectNameResult);
             throw new AutoTestException(ResultEnums.PROJECT_NAME_IS_EXIST);
         }
-
         return repository.save(projects);
     }
 

@@ -20,10 +20,17 @@ public enum ResultEnums {
     PROJECT_ERROR(5004,"项目异常"),
 
 
+
     // 模块相关
     PARENT_MODULE_NOT_EXIST(5101, "父模块不存在"),
-    MODULE_INDEX_NOT_REPETITION(5102, "一个模块下的index值不可重复"),
-    MODULE_ERROR(5103,"模块异常"),
+    MODULE_NOT_EXIST(5102, "模块不存在"),
+    MODULE_INDEX_NOT_REPETITION(5103, "一个模块下的index值不可重复"),
+    MODULE_ERROR(5104,"模块异常"),
+    PROJECT_ID_NOT_EQUALITY(5105,"项目id不一致"),
+
+    FORM_PARAM_ERROR(5200,"请求参数错误"),
+
+
     ;
 
     private Integer code;

@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
+/**
+ * 测试用例
+ */
+
 @Entity
 @Data
 @DynamicUpdate
@@ -20,7 +24,7 @@ public class TestCase {
 
   private String caseName;
 
-  private Integer index;
+  private Integer indexs;
 
   private Integer isDelete;
 

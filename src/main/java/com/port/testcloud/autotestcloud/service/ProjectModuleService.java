@@ -15,11 +15,19 @@ public interface ProjectModuleService {
     /* 查询模块 */
     ModuleDto findOne(String id);
 
+    /* 查询模块，并包括子集 */
+    List<ModuleDto> sonAll(String moduleId);
+
+    /* 查询所有模块 */
+    List<ModuleDto> findFirstAll();
+
     /* 查询项目下的所有模块 */
-    List<ModuleDto> findByProjectIdAndIsDelete(String projectId, Integer isDelete);
+    List<ModuleDto> findAllByProjectId(String projectId);
+
 
     /* 查询某个模块下的所有子模块 */
     List<ModuleDto> findByParentIdAndIsDelete(String projectId, Integer isDelete);
+
 
     ModuleDto save(ModuleDto moduleDto);
 

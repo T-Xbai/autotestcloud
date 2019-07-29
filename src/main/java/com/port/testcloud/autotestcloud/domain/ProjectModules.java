@@ -2,6 +2,7 @@ package com.port.testcloud.autotestcloud.domain;
 
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Entity
 @Data
 @DynamicUpdate
+@DynamicInsert
 public class ProjectModules {
 
   @Id
@@ -23,7 +25,7 @@ public class ProjectModules {
   private String parentId;
 
   /* 模块排序 */
-  private Integer index;
+  private Integer indexs;
 
   /* 模块名称 */
   private String moduleName;

@@ -43,7 +43,7 @@ create table project_modules
     `id`                 varchar(30) not null,
     `project_id`         varchar(30) not null,
     `parent_id`          varchar(30) comment '为 null 则为一级模块',
-    `index`              tinyint     not null comment '模块排序',
+    `indexs`              tinyint     not null comment '模块排序',
     `module_name`        varchar(30) not null comment '模块名称',
     `module_description` text comment '模块描述',
     `is_delete`          tinyint   default 0 comment '默认值：0 ，已删除：-1',

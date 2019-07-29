@@ -1,17 +1,21 @@
-package com.port.testcloud.autotestcloud.dto;
+package com.port.testcloud.autotestcloud.VO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.port.testcloud.autotestcloud.dto.ModuleDto;
 import lombok.Data;
+
 import java.util.Date;
 import java.util.List;
 
 /**
- * @ClassName: ModuleDto
+ * @ClassName: ModuleVO
  * @CreateUser: wangxiaohao
- * @CreateDate: 2019-07-25 18:14
- * @Description: 模块 dto
+ * @CreateDate: 2019-07-28 22:33
+ * @Description:
  */
 @Data
-public class ModuleDto {
+public class ModuleVO {
+
 
     private String id;
 
@@ -31,6 +35,7 @@ public class ModuleDto {
     private String moduleDescription;
 
     /* 删除状态 */
+    @JsonIgnore
     private Integer isDelete;
 
     /* 子集 */
@@ -39,4 +44,5 @@ public class ModuleDto {
     private Date createTime;
 
     private Date updateTime;
+
 }

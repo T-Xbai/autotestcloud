@@ -1,21 +1,23 @@
-package com.port.testcloud.autotestcloud.dto;
+package com.port.testcloud.autotestcloud.form;
 
 import lombok.Data;
+
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 /**
- * @ClassName: ModuleDto
+ * @ClassName: ModuleForm
  * @CreateUser: wangxiaohao
- * @CreateDate: 2019-07-25 18:14
- * @Description: 模块 dto
+ * @CreateDate: 2019-07-28 21:35
+ * @Description:
  */
 @Data
-public class ModuleDto {
-
-    private String id;
+public class ModuleForm {
 
     /* 项目id */
+    @NotEmpty(message = "项目Id必传")
     private String projectId;
 
     /* 父级模块 */
@@ -25,16 +27,12 @@ public class ModuleDto {
     private Integer indexs;
 
     /* 模块名称 */
+    @NotEmpty(message = "模板名称必传")
     private String moduleName;
 
     /* 模块介绍 */
     private String moduleDescription;
 
-    /* 删除状态 */
-    private Integer isDelete;
-
-    /* 子集 */
-    List<ModuleDto> sonList;
 
     private Date createTime;
 

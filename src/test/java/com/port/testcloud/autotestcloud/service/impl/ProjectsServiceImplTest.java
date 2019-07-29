@@ -2,6 +2,7 @@ package com.port.testcloud.autotestcloud.service.impl;
 
 import com.port.testcloud.autotestcloud.domain.Projects;
 import com.port.testcloud.autotestcloud.service.ProjectsService;
+import com.port.testcloud.autotestcloud.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,5 +36,10 @@ public class ProjectsServiceImplTest {
 
     @Test
     public void save() {
+        Projects projects = new Projects();
+        projects.setId(KeyUtil.unique());
+        projects.setProjectName("见创云");
+        projectsService.save(projects);
+
     }
 }

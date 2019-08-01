@@ -1,7 +1,9 @@
 package com.port.testcloud.autotestcloud.utils;
 
 import com.port.testcloud.autotestcloud.VO.ResultVO;
+import com.port.testcloud.autotestcloud.dto.TestCaseDto;
 import com.port.testcloud.autotestcloud.enums.ResultEnums;
+import org.springframework.data.domain.Page;
 
 /**
  * @ClassName: ResultVOUtil
@@ -19,6 +21,19 @@ public class ResultVOUtil {
         );
     }
 
+    public static ResultVO<Object> success(Object object , Page page) {
+        return new ResultVO<>(
+                ResultEnums.SUCCESS.getCode(),
+                ResultEnums.SUCCESS.getMes(),
+                object,
+                page.getPageable()
+        );
+    }
+
+
+    public static ResultVO error(Integer code, String message) {
+        return new ResultVO(code, message);
+    }
 
     public static ResultVO<Object> body(ResultEnums resultEnums, Object object) {
         return new ResultVO<>(
@@ -27,8 +42,6 @@ public class ResultVOUtil {
                 object
         );
     }
-
-
 
 
 }

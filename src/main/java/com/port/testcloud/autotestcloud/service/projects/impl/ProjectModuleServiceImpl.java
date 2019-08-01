@@ -1,4 +1,4 @@
-package com.port.testcloud.autotestcloud.service.impl;
+package com.port.testcloud.autotestcloud.service.projects.impl;
 
 import com.port.testcloud.autotestcloud.domain.ProjectModules;
 import com.port.testcloud.autotestcloud.domain.Projects;
@@ -6,9 +6,9 @@ import com.port.testcloud.autotestcloud.dto.ModuleDto;
 import com.port.testcloud.autotestcloud.enums.DeleteStatusEnums;
 import com.port.testcloud.autotestcloud.enums.ResultEnums;
 import com.port.testcloud.autotestcloud.exception.AutoTestException;
-import com.port.testcloud.autotestcloud.repository.ProjectModulesRepository;
-import com.port.testcloud.autotestcloud.service.ProjectModuleService;
-import com.port.testcloud.autotestcloud.service.ProjectsService;
+import com.port.testcloud.autotestcloud.repository.projects.ProjectModulesRepository;
+import com.port.testcloud.autotestcloud.service.projects.ProjectModuleService;
+import com.port.testcloud.autotestcloud.service.projects.ProjectsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.port.testcloud.autotestcloud.convert.ProjectModuleToModuleDto.convert;
@@ -158,7 +156,7 @@ public class ProjectModuleServiceImpl implements ProjectModuleService {
         if (byParentIdAndIndex != null && byParentIdAndIndex.size() > 0) {
             log.error("【模块操作】同一个父模块下，排序不可重复：parentId = {} , index = {}",
                     moduleDto.getParentId(), moduleDto.getIndexs());
-            throw new AutoTestException(ResultEnums.MODULE_INDEX_NOT_REPETITION);
+            throw new AutoTestException(ResultEnums.INDEX_NOT_REPETITION);
         }
 
         ProjectModules projectModules = new ProjectModules();

@@ -1,6 +1,7 @@
 package com.port.testcloud.autotestcloud.repository;
 
 import com.port.testcloud.autotestcloud.domain.Projects;
+import com.port.testcloud.autotestcloud.repository.projects.ProjectsRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

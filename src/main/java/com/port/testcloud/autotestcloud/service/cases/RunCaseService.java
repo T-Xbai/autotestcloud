@@ -1,0 +1,24 @@
+package com.port.testcloud.autotestcloud.service.cases;
+
+import com.port.testcloud.autotestcloud.dto.TestCaseDto;
+import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * @ClassName: RunCaseService
+ * @CreateUser: wangxiaohao
+ * @CreateDate: 2019-07-31 22:49
+ * @Description:
+ */
+public interface RunCaseService {
+
+
+    /**
+     * 根据 caseId 执行
+     * @param caseId
+     */
+    Response runCase(String caseId);
+
+
+
+}

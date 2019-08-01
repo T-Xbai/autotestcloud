@@ -5,7 +5,7 @@ import com.port.testcloud.autotestcloud.domain.Projects;
 import com.port.testcloud.autotestcloud.enums.ResultEnums;
 import com.port.testcloud.autotestcloud.exception.AutoTestException;
 import com.port.testcloud.autotestcloud.form.ProjectsForm;
-import com.port.testcloud.autotestcloud.service.ProjectsService;
+import com.port.testcloud.autotestcloud.service.projects.ProjectsService;
 import com.port.testcloud.autotestcloud.utils.KeyUtil;
 import com.port.testcloud.autotestcloud.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;

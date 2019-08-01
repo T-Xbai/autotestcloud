@@ -1,4 +1,4 @@
-package com.port.testcloud.autotestcloud.service;
+package com.port.testcloud.autotestcloud.service.projects;
 
 import com.port.testcloud.autotestcloud.dto.ModuleDto;
 

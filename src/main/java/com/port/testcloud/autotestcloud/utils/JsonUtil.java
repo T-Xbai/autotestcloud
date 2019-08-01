@@ -1,9 +1,11 @@
 package com.port.testcloud.autotestcloud.utils;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName: JsonUtil
@@ -12,6 +14,7 @@ import java.io.IOException;
  * @Description:
  */
 public class JsonUtil {
+
 
     public static String toJson(Object object) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -23,8 +26,15 @@ public class JsonUtil {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        String json = "\"attributes\":[{\"nm\":\"ACCOUNT\",\"lv\":[{\"v\":{\"Id\":null,\"State\":null},\"vt\":\"java.util.Map\",\"cn\":1}],\"vt\":\"java.util.Map\",\"status\":\"SUCCESS\",\"lmd\":13585},{\"nm\":\"PROFILE\",\"lv\":[{\"v\":{\"Party\":null,\"Ads\":null},\"vt\":\"java.util.Map\",\"cn\":2}],\"vt\":\"java.util.Map\",\"status\":\"SUCCESS\",\"lmd\":41962}]\n";
-        System.out.println(JsonUtil.toJson(json));
+
+    public static Map<String,Object> toMap(String str){
+        Gson gson = new Gson();
+
+        Map<String,Object> map = new HashMap<>();
+        return gson.fromJson(str, map.getClass());
     }
+
+
+
+
 }

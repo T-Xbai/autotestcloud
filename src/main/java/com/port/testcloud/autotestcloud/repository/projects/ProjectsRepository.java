@@ -1,4 +1,4 @@
-package com.port.testcloud.autotestcloud.repository;
+package com.port.testcloud.autotestcloud.repository.projects;
 
 import com.port.testcloud.autotestcloud.domain.Projects;
 import org.springframework.data.jpa.repository.JpaRepository;

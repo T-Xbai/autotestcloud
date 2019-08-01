@@ -1,8 +1,7 @@
 package com.port.testcloud.autotestcloud.service.impl;
 
 import com.port.testcloud.autotestcloud.dto.ModuleDto;
-import com.port.testcloud.autotestcloud.service.ProjectModuleService;
-import com.port.testcloud.autotestcloud.utils.JsonUtil;
+import com.port.testcloud.autotestcloud.service.projects.ProjectModuleService;
 import com.port.testcloud.autotestcloud.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -11,12 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -1,7 +1,7 @@
 package com.port.testcloud.autotestcloud.service.impl;
 
 import com.port.testcloud.autotestcloud.domain.Projects;
-import com.port.testcloud.autotestcloud.service.ProjectsService;
+import com.port.testcloud.autotestcloud.service.projects.ProjectsService;
 import com.port.testcloud.autotestcloud.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

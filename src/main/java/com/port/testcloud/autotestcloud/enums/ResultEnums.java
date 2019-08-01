@@ -24,10 +24,19 @@ public enum ResultEnums {
     // 模块相关
     PARENT_MODULE_NOT_EXIST(5101, "父模块不存在"),
     MODULE_NOT_EXIST(5102, "模块不存在"),
-    MODULE_INDEX_NOT_REPETITION(5103, "一个模块下的index值不可重复"),
+    INDEX_NOT_REPETITION(5103, "index值不可重复"),
     MODULE_ERROR(5104,"模块异常"),
     PROJECT_ID_NOT_EQUALITY(5105,"项目id不一致"),
 
+    //用例相关
+    TEST_CASE_NOT_EXIST(5200,"用例不存在"),
+    CASE_ID_RELEVANCE_ERROR(5201,"用例关联错误"),
+    DEPEND_DATA_NOT_EXIST(5202,"依赖数据不存在"),
+
+    // 用例 - 数据库操作
+    DB_OPERATION_NOT_EXIST(5203,"用例数据库操作：id 不存在"),
+
+    // 表单相关
     FORM_PARAM_ERROR(5200,"请求参数错误"),
 
 

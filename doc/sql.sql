@@ -1,3 +1,14 @@
+# 数据变量
+create table data_variable
+(
+    `id`         varchar(30) not null,
+    `project_id` varchar(30) not null,
+    `v_key`      varchar(30) not null unique comment 'key',
+    `v_value`    varchar(30) comment 'value',
+    `description` text comment '描述',
+    primary key (`id`)
+) comment '数据变量';
+
 # 项目表
 create table projects
 (
@@ -25,14 +36,14 @@ create table build_time
 # 数据库配置表
 create table db_config
 (
-    `id`       varchar(30) not null,
-    `db_type`  varchar(10) not null comment '数据库类型，例如：mysql',
-    `name`     varchar(20) not null comment '配置命名',
-    `host`     varchar(30) not null comment '数据库 host',
-    `username` varchar(30) not null comment '登录用户',
-    `password` varchar(30) comment '登录密码',
-    `database` varchar(20) not null comment '需要连接的数据库',
-    `port`     varchar(20) not null comment '连接端口',
+    `id`            varchar(30) not null,
+    `db_type`       tinyint     not null default 0 comment '数据库类型，默认 0 为 mysql ,按需要进行扩展',
+    `name`          varchar(20) not null comment '配置命名',
+    `host`          varchar(30) not null comment '数据库 host',
+    `username`      varchar(30) not null comment '登录用户',
+    `password`      varchar(30) comment '登录密码',
+    `database_name` varchar(20) not null comment '需要连接的数据库',
+    `port`          varchar(20) not null comment '连接端口',
     primary key (`id`)
 ) comment '数据库配置表';
 
@@ -43,7 +54,7 @@ create table project_modules
     `id`                 varchar(30) not null,
     `project_id`         varchar(30) not null,
     `parent_id`          varchar(30) comment '为 null 则为一级模块',
-    `indexs`              tinyint     not null comment '模块排序',
+    `indexs`             tinyint     not null comment '模块排序',
     `module_name`        varchar(30) not null comment '模块名称',
     `module_description` text comment '模块描述',
     `is_delete`          tinyint   default 0 comment '默认值：0 ，已删除：-1',
@@ -86,6 +97,7 @@ create table run_result
 (
     `id`                varchar(30)  not null,
     `case_id`           varchar(30)  not null,
+    `run_id`            varchar(30)  not null comment '执行id，用于区分执行批次',
     `run_time`          timestamp    not null comment '运行时间',
     `request_url`       varchar(252) not null comment '请求 url',
     `request_method`    varchar(10)  not null comment '请求方法',
@@ -118,7 +130,7 @@ create table db_operation
     `id`           varchar(30) not null,
     `case_id`      varchar(30) not null,
     `db_config_id` varchar(30) not null,
-    `sql`          varchar(60) not null comment '执行的 sql 语法',
+    `run_sql`      varchar(60) not null comment '执行的 sql 语法',
     `operation`    tinyint default 0 comment '默认 0，case 执行前 ， -1  case执行结束后执行 ',
     primary key (`id`)
 

@@ -53,12 +53,7 @@ public class CaseInfoServiceImpl implements CaseInfoService {
             infoDto.setId(KeyUtil.unique());
         }
 
-        TestCaseDto testCaseDto = caseService.findOne(infoDto.getCaseId());
-        if (testCaseDto == null || testCaseDto.getId() == null) {
-            log.error("【用例详情操作】caseId 不存在： {}", infoDto.getCaseId());
-            throw new AutoTestException(ResultEnums.TEST_CASE_NOT_EXIST);
-        }
-
+        caseService.isExist(infoDto.getCaseId());
         CaseInfo byCaseId = infoRepository.findByCaseId(infoDto.getCaseId());
         if (byCaseId != null && byCaseId.getCaseId().equals(infoDto.getCaseId())
                 && !byCaseId.getId().equals(infoDto.getId())) {

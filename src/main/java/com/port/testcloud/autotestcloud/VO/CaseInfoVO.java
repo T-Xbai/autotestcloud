@@ -37,6 +37,9 @@ public class CaseInfoVO {
 
     private List<DependCaseVO> dependCaseList;
 
+    private List<DbOperationVO> dbOperationList;
+
+
     private Date createTime;
 
     private Date updateTime;

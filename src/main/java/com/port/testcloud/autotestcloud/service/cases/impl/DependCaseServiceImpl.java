@@ -48,7 +48,7 @@ public class DependCaseServiceImpl implements DependCaseService {
 
     @Override
     public DependCase isExist(String id) {
-        DependCase dependCase = new DependCase();
+        DependCase dependCase;
         try {
             dependCase = dependCaseRepository.findById(id).get();
         } catch (NoSuchElementException e){

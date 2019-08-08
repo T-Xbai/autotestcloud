@@ -21,7 +21,7 @@ public class DbOperation {
 
   private String dbConfigId;
 
-  private String sql;
+  private String runSql;
 
   private Integer operation;
 

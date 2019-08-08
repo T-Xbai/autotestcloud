@@ -1,6 +1,7 @@
-package com.port.testcloud.autotestcloud.controller;
+package com.port.testcloud.autotestcloud.controller.cases;
 
 import com.port.testcloud.autotestcloud.VO.ResultVO;
+import com.port.testcloud.autotestcloud.domain.RunResult;
 import com.port.testcloud.autotestcloud.dto.TestCaseDto;
 import com.port.testcloud.autotestcloud.enums.ResultEnums;
 import com.port.testcloud.autotestcloud.exception.AutoTestException;
@@ -30,7 +31,6 @@ public class RunCaseController {
     @Autowired
     private RunCaseService runCaseService;
 
-
     @Autowired
     private TestCaseService testCaseService;
 
@@ -44,7 +44,7 @@ public class RunCaseController {
         }
 
 
-        Response response = runCaseService.runCase(caseId);
+        RunResult response = runCaseService.runCase(caseId);
 
         return ResultVOUtil.success(response);
     }

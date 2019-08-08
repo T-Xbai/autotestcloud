@@ -16,6 +16,8 @@ public class RunResult {
 
   private String caseId;
 
+  private String runId;
+
   private Date runTime;
 
   private String requestUrl;

@@ -1,10 +1,12 @@
-package com.port.testcloud.autotestcloud.controller;
+package com.port.testcloud.autotestcloud.controller.cases;
 
 import com.port.testcloud.autotestcloud.VO.CaseInfoVO;
+import com.port.testcloud.autotestcloud.VO.DbOperationVO;
 import com.port.testcloud.autotestcloud.VO.DependCaseVO;
 import com.port.testcloud.autotestcloud.VO.ResultVO;
 import com.port.testcloud.autotestcloud.convert.testcase.CaseInfoFormToTestCaseDto;
 import com.port.testcloud.autotestcloud.convert.testcase.TestCaseDtoToCaseInfoVO;
+import com.port.testcloud.autotestcloud.domain.DbOperation;
 import com.port.testcloud.autotestcloud.domain.DependCase;
 import com.port.testcloud.autotestcloud.dto.InfoDto;
 import com.port.testcloud.autotestcloud.dto.ModuleDto;
@@ -13,6 +15,7 @@ import com.port.testcloud.autotestcloud.enums.ResultEnums;
 import com.port.testcloud.autotestcloud.exception.AutoTestException;
 import com.port.testcloud.autotestcloud.form.CaseInfoForm;
 import com.port.testcloud.autotestcloud.service.cases.CaseInfoService;
+import com.port.testcloud.autotestcloud.service.cases.DbOperationService;
 import com.port.testcloud.autotestcloud.service.cases.DependCaseService;
 import com.port.testcloud.autotestcloud.service.projects.ProjectModuleService;
 import com.port.testcloud.autotestcloud.service.cases.TestCaseService;
@@ -57,11 +60,14 @@ public class TestCaseController {
     @Autowired
     private DependCaseService dependCaseService;
 
+    @Autowired
+    private DbOperationService dbOperationService;
+
     @GetMapping("/{caseId}")
     public ResultVO findOne(@PathVariable("caseId") String caseId) {
         CaseInfoVO infoVO = new CaseInfoVO();
 
-        TestCaseDto testCaseDto = caseService.isExist(caseId);
+        TestCaseDto testCaseDto = caseService.findOne(caseId);
 
         BeanUtils.copyProperties(testCaseDto.getInfo(), infoVO);
         BeanUtils.copyProperties(testCaseDto, infoVO);
@@ -74,6 +80,17 @@ public class TestCaseController {
             dependCaseVOList.add(dependCaseVO);
         });
         infoVO.setDependCaseList(dependCaseVOList);
+
+
+        List<DbOperationVO> dbOperationVOList = new ArrayList<>();
+        testCaseDto.getDbOperationList().forEach(dbOperation -> {
+            DbOperationVO dbOperationVO = new DbOperationVO();
+            BeanUtils.copyProperties(dbOperation, dbOperationVO);
+            dbOperationVOList.add(dbOperationVO);
+
+        });
+        infoVO.setDbOperationList(dbOperationVOList);
+
         return ResultVOUtil.success(infoVO);
     }
 
@@ -146,12 +163,23 @@ public class TestCaseController {
         infoService.save(infoDto);
 
         // 创建依赖case
-        List<DependCase> dependCaseList = testCaseDto.getDependCaseList();
-        dependCaseList.forEach(dependCase -> {
+        testCaseDto.getDependCaseList().forEach(dependCase -> {
             dependCase.setId(KeyUtil.unique());
             dependCase.setCaseId(caseId);
             dependCaseService.save(dependCase);
         });
+
+
+        // 创建db操作
+        testCaseDto.getDbOperationList().forEach(dbOperation -> {
+            dbOperation.setId(KeyUtil.unique());
+            dbOperation.setCaseId(caseId);
+            dbOperationService.save(dbOperation);
+        });
+
+
+
+
 
         Map<String, String> responseResult = new HashMap<>();
         responseResult.put("id", testCaseDto.getId());
@@ -173,25 +201,39 @@ public class TestCaseController {
         }
 
 
-        TestCaseDto testCaseDto = caseService.isExist(caseId);
+        TestCaseDto testCaseDto = caseService.findOne(caseId);
         testCaseDto = CaseInfoFormToTestCaseDto.convert(form, testCaseDto);
 
         caseService.save(testCaseDto);
 
-        infoService.save(testCaseDto.getInfo());
 
+        infoService.save(testCaseDto.getInfo());
 
         List<DependCase> dependCaseList = testCaseDto.getDependCaseList();
         dependCaseList.forEach(dependCase -> {
-            if (!StringUtils.isEmpty(dependCase.getId())){
+            if (!StringUtils.isEmpty(dependCase.getId())) {
                 dependCaseService.isExist(dependCase.getId());
-            }else {
+            } else {
                 dependCase.setId(KeyUtil.unique());
             }
 
             dependCase.setCaseId(caseId);
             dependCaseService.save(dependCase);
         });
+
+
+        List<DbOperation> dbOperationList = testCaseDto.getDbOperationList();
+        dbOperationList.forEach(dbOperation -> {
+            if (!StringUtils.isEmpty(dbOperation.getId())) {
+                dbOperationService.isExist(dbOperation.getId());
+            } else {
+                dbOperation.setId(KeyUtil.unique());
+            }
+
+            dbOperation.setCaseId(caseId);
+            dbOperationService.save(dbOperation);
+        });
+
 
         CaseInfoVO infoVO = TestCaseDtoToCaseInfoVO.convert(testCaseDto);
         return ResultVOUtil.success(infoVO);

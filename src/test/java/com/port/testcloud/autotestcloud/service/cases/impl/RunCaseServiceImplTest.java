@@ -1,5 +1,6 @@
 package com.port.testcloud.autotestcloud.service.cases.impl;
 
+import com.port.testcloud.autotestcloud.domain.RunResult;
 import com.port.testcloud.autotestcloud.dto.InfoDto;
 import com.port.testcloud.autotestcloud.dto.TestCaseDto;
 import com.port.testcloud.autotestcloud.service.cases.RunCaseService;
@@ -33,10 +34,9 @@ public class RunCaseServiceImplTest {
         infoDto.setRequestMethod("get");
         testCaseDto.setInfo(infoDto);
 
-        Response response = runCaseService.runCase("");
-        assert response.body() != null;
-        log.info(response.body().toString());
-        System.out.println(response.body().string().toString());
+        RunResult response = runCaseService.runCase("");
+        assert response.getResponseBody() != null;
+        log.info(response.getResponseBody().toString());
 
     }
 }

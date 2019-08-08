@@ -20,3 +20,15 @@ spring:
     url: jdbc:mysql://47.110.38.252:3306/testcloud?characterEncoding=utf-8&useSSL=false
   jackson:
     default-property-inclusion: non_null
+
+
+swagger:
+  title: API标题
+  description: API描述
+  version: 1.0
+  terms-of-service-url: http://www.javastack.cn/
+  base-package: cn.javastack.test.web
+  contact:
+    name: Javastack
+    url: http://www.javastack.cn/
+    email: admin@javastack.cn

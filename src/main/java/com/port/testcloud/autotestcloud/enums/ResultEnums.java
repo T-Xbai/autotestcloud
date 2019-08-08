@@ -37,8 +37,14 @@ public enum ResultEnums {
     DB_OPERATION_NOT_EXIST(5203,"用例数据库操作：id 不存在"),
 
     // 表单相关
-    FORM_PARAM_ERROR(5200,"请求参数错误"),
+    FORM_PARAM_ERROR(5300,"请求参数错误"),
 
+
+    // 数据库配置
+    DB_CONFIG_IS_EXIST(5401,"数据库配置不存在"),
+
+    // 运行结果
+    RUN_RESULT_ID_NOT_EXIST(5501,"运行结果Id不存在")
 
     ;
 

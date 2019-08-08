@@ -1,5 +1,6 @@
 package com.port.testcloud.autotestcloud.form;
 
+import com.sun.org.glassfish.gmbal.NameValue;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -39,6 +40,8 @@ public class CaseInfoForm {
 
     private String checkResult;
 
-    private List<DependCaseForm> dependCaseFormList;
+    private List<DependCaseForm> dependCaseList;
+
+    private List<DbOperationForm> dbOperationList;
 
 }

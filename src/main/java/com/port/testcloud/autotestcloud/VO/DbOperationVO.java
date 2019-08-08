@@ -3,20 +3,23 @@ package com.port.testcloud.autotestcloud.VO;
 import lombok.Data;
 
 /**
- * @ClassName: DependCaseVO
+ * @ClassName: DbOperationVO
  * @CreateUser: wangxiaohao
- * @CreateDate: 2019-08-01 15:27
+ * @CreateDate: 2019-08-02 11:55
  * @Description:
  */
 @Data
-public class DependCaseVO {
+public class DbOperationVO {
 
     private String id;
 
-    private String dependCase;
+    private String caseId;
 
-    private String dependParams;
+    private String dbConfigId;
+
+    private String runSql;
 
     private Integer operation;
+
 
 }

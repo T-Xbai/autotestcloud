@@ -21,6 +21,10 @@ public class ResultVOUtil {
         );
     }
 
+    public static ResultVO<Object> success() {
+        return success(null);
+    }
+
     public static ResultVO<Object> success(Object object , Page page) {
         return new ResultVO<>(
                 ResultEnums.SUCCESS.getCode(),

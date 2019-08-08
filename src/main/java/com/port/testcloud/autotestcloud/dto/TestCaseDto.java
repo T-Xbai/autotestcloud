@@ -1,5 +1,6 @@
 package com.port.testcloud.autotestcloud.dto;
 
+import com.port.testcloud.autotestcloud.domain.DbOperation;
 import com.port.testcloud.autotestcloud.domain.DependCase;
 import lombok.Data;
 
@@ -32,4 +33,6 @@ public class TestCaseDto {
     private InfoDto info;
 
     private List<DependCase> dependCaseList;
+
+    private List<DbOperation> dbOperationList;
 }

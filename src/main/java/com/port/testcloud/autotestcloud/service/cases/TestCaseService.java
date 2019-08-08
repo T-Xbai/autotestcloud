@@ -68,6 +68,6 @@ public interface TestCaseService {
      */
     void delete(String caseId);
 
-    TestCaseDto isExist(String caseId);
+    void isExist(String caseId);
 
 }

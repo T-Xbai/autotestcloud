@@ -1,5 +1,6 @@
 package com.port.testcloud.autotestcloud.service.cases.impl;
 
+import com.port.testcloud.autotestcloud.domain.DbOperation;
 import com.port.testcloud.autotestcloud.domain.DependCase;
 import com.port.testcloud.autotestcloud.domain.TestCase;
 import com.port.testcloud.autotestcloud.dto.InfoDto;
@@ -9,6 +10,7 @@ import com.port.testcloud.autotestcloud.enums.ResultEnums;
 import com.port.testcloud.autotestcloud.exception.AutoTestException;
 import com.port.testcloud.autotestcloud.repository.cases.TestCaseRepository;
 import com.port.testcloud.autotestcloud.service.cases.CaseInfoService;
+import com.port.testcloud.autotestcloud.service.cases.DbOperationService;
 import com.port.testcloud.autotestcloud.service.cases.DependCaseService;
 import com.port.testcloud.autotestcloud.service.projects.ProjectModuleService;
 import com.port.testcloud.autotestcloud.service.cases.TestCaseService;
@@ -24,6 +26,7 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static com.port.testcloud.autotestcloud.convert.testcase.TestCaseToTestCaseDto.convert;
 import static com.port.testcloud.autotestcloud.enums.DeleteStatusEnums.DEL;
@@ -51,8 +54,13 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Autowired
     private DependCaseService dependCaseService;
 
+    @Autowired
+    private DbOperationService dbOperationService;
+
     @Override
     public TestCaseDto findOne(String caseId) {
+
+        isExist(caseId);
         TestCase testCase = caseRepository.findById(caseId).orElse(new TestCase());
         TestCaseDto testCaseDto = convert(testCase);
 
@@ -61,6 +69,9 @@ public class TestCaseServiceImpl implements TestCaseService {
 
         List<DependCase> dependCaseList = dependCaseService.findByCaseId(caseId);
         testCaseDto.setDependCaseList(dependCaseList);
+
+        List<DbOperation> dbOperationList = dbOperationService.findByCaseId(caseId);
+        testCaseDto.setDbOperationList(dbOperationList);
 
         return testCaseDto;
     }
@@ -106,14 +117,13 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
-    public TestCaseDto isExist(String caseId) {
-        TestCaseDto testCaseDto = findOne(caseId);
-        if (testCaseDto == null || testCaseDto.getId() == null){
+    public void isExist(String caseId) {
+        try {
+            TestCase testCase = caseRepository.findById(caseId).get();
+        }catch (NoSuchElementException e){
             log.error("【用例查询】caseId 不存在：{}", caseId);
             throw new AutoTestException(ResultEnums.TEST_CASE_NOT_EXIST);
         }
-
-        return testCaseDto;
     }
 
     /**

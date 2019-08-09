@@ -1,19 +1,21 @@
-# 数据变量
-create table data_variable
-(
-    `id`         varchar(30) not null,
-    `project_id` varchar(30) not null,
-    `v_key`      varchar(30) not null unique comment 'key',
-    `v_value`    varchar(30) comment 'value',
-    `description` text comment '描述',
-    primary key (`id`)
-) comment '数据变量';
+# 数据变量 TODO 抛弃：db -> data_variable
+# create table data_variable
+# (
+#     `id`         varchar(30) not null,
+#     `project_id` varchar(30) not null,
+#     `v_key`      varchar(30) not null unique comment 'key',
+#     `v_value`    varchar(30) comment 'value',
+#     `description` text comment '描述',
+#     primary key (`id`)
+# ) comment '数据变量';
+
 
 # 项目表
 create table projects
 (
     `id`                  varchar(30) not null,
     `project_name`        varchar(30) not null unique comment '项目名称',
+    `project_variable`    varchar(225) comment '项目定义公共变量',
     `project_description` text comment '项目介绍',
     `create_user`         varchar(30) comment '创建用户',
     `is_delete`           tinyint   default 0 comment '默认值：0 ，已删除：-1',
@@ -21,6 +23,8 @@ create table projects
     `update_time`         timestamp default current_timestamp on update current_timestamp comment '修改时间',
     primary key (`id`)
 ) comment '项目表';
+
+
 
 # 构建时间配置表
 create table build_time

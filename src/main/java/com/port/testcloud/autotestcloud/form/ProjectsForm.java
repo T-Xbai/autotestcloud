@@ -16,15 +16,14 @@ import java.util.Date;
 public class ProjectsForm {
 
 
-
     @NotEmpty(message = "项目名称必填")
     private String projectName;
 
     private String projectDescription;
 
+    private String projectVariable;
+
     private String createUser;
-
-
 
 
 }

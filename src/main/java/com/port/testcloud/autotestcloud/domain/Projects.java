@@ -22,6 +22,8 @@ public class Projects {
 
   private String projectDescription;
 
+  private String projectVariable;
+
   private String createUser;
 
   private Integer isDelete;

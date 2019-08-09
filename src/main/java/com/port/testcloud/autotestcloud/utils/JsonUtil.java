@@ -1,14 +1,9 @@
 package com.port.testcloud.autotestcloud.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.port.testcloud.autotestcloud.dto.AssertResultDto;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Type;
+import java.util.*;
 
 /**
  * @ClassName: JsonUtil
@@ -25,13 +20,21 @@ public class JsonUtil {
 
     }
 
-
-    public static Map<String,Object> toMap(String str){
+    public static <T> T fromJson(String json, T t) {
         Gson gson = new Gson();
-        Map<String,Object> map = new HashMap<>();
-        return gson.fromJson(str, map.getClass());
+        return gson.fromJson(json, (Type) t);
     }
 
+    public static Object fromJson(String json,Class c) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, c);
+    }
+
+    public static Map<String, Object> toMap(String str) {
+        Gson gson = new Gson();
+        Map<String, Object> map = new HashMap<>();
+        return gson.fromJson(str, map.getClass());
+    }
 
 
 }

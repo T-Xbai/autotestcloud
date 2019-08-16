@@ -1,9 +1,14 @@
 package com.port.testcloud.autotestcloud.service.cases;
 
 import com.port.testcloud.autotestcloud.domain.RunResult;
+import com.port.testcloud.autotestcloud.domain.TestCase;
+import com.port.testcloud.autotestcloud.dto.DataVariableDto;
 import com.port.testcloud.autotestcloud.dto.TestCaseDto;
 import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: RunCaseService
@@ -16,13 +21,18 @@ public interface RunCaseService {
 
     /**
      * 根据 caseId 执行
-     * @param caseId
      */
-    RunResult runCase(String caseId);
+    Response runCase(TestCaseDto testCaseDto, RunResult runResult);
 
-    RunResult runCase(String caseId,String runId);
+    RunResult runCase(TestCaseDto testCaseDto, String runId);
 
-    void projectByRunCase(String projectId);
+    String checkResult(Response response, String checkResult);
+
+    TestCaseDto replaceData(TestCaseDto testCaseDto);
+
+    List<DataVariableDto> runDependCase(String caseId, RunResult runResult);
+
+    void projectByRunCase(String projectId, String runId);
 
 
 }

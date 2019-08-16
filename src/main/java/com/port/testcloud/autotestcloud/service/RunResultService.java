@@ -12,6 +12,10 @@ public interface RunResultService {
 
     List<RunResult> findByRunId(String runId);
 
+    RunResult findByCaseIdAndRunId(String caseId, String runId);
+
+    void jointExceptionMsg(RunResult runResult, String prefixMsg, Exception e);
+
     RunResult save(RunResult runResult);
 
     void isExist(String id);

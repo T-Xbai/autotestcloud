@@ -1,5 +1,7 @@
 package com.port.testcloud.autotestcloud.form;
 
+import com.google.gson.Gson;
+import com.port.testcloud.autotestcloud.utils.JsonUtil;
 import com.sun.org.glassfish.gmbal.NameValue;
 import lombok.Data;
 
@@ -43,5 +45,7 @@ public class CaseInfoForm {
     private List<DependCaseForm> dependCaseList;
 
     private List<DbOperationForm> dbOperationList;
+
+
 
 }

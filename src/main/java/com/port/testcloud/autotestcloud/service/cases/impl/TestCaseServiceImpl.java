@@ -88,6 +88,18 @@ public class TestCaseServiceImpl implements TestCaseService {
         return convert(testCasePage, pageable);
     }
 
+    @Override
+    public List<TestCaseDto> findAll(String moudleId) {
+        List<String> caseIdList = caseRepository.findByModuleToAllCaseId(moudleId, NORMAL.getCode());
+
+        List<TestCaseDto> testCaseDtoList = new ArrayList<>();
+        caseIdList.forEach(caseId->{
+            TestCaseDto testCaseDto = this.findOne(caseId);
+            testCaseDtoList.add(testCaseDto);
+        });
+        return testCaseDtoList;
+    }
+
 
     @Override
     public TestCaseDto findByIndex(String moduleId, Integer indexs) {

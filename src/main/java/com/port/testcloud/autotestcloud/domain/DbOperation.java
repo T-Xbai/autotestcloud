@@ -14,18 +14,18 @@ import javax.persistence.Id;
 @DynamicInsert
 public class DbOperation {
 
-  @Id
-  private String id;
+    @Id
+    private String id;
 
-  private String caseId;
+    private String caseId;
 
-  private String dbConfigId;
+    private String dbConfigId;
 
-  private String runSql;
+    private String runSql;
 
-  private Integer operation;
+    private Integer operation;
 
-
+    private String dependVariable;
 
 
 }

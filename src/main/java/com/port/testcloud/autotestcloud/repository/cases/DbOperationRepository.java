@@ -11,8 +11,10 @@ import java.util.List;
  * @CreateDate: 2019-08-01 18:32
  * @Description:
  */
-public interface DbOperationRepository extends JpaRepository<DbOperation,String> {
+public interface DbOperationRepository extends JpaRepository<DbOperation, String> {
 
     List<DbOperation> findByCaseId(String caseId);
+
+    List<DbOperation> findByCaseIdAndOperation(String caseId, Integer operation);
 
 }

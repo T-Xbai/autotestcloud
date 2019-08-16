@@ -11,6 +11,6 @@ public interface RunResultRepository extends JpaRepository<RunResult,String> {
 
     List<RunResult> findByRunId(String runId);
 
-
+    RunResult findByCaseIdAndRunId(String caseId,String runId);
 
 }

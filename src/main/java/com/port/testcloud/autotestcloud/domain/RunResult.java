@@ -32,7 +32,7 @@ public class RunResult {
 
   private String responseBody;
 
-  private String exceptionMessage;
+  private String exceptionMessage ="";
 
   private String checkResult;
 

@@ -21,5 +21,6 @@ public class DbOperationVO {
 
     private Integer operation;
 
+    private String dependVariable;
 
 }

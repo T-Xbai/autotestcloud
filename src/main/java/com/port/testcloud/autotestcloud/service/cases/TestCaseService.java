@@ -30,11 +30,21 @@ public interface TestCaseService {
     Page<TestCaseDto> findAll(String moduleId, Pageable pageable);
 
     /**
+     * 查询某个模块下所有用例的
+     * @param moduleId
+     * @return
+     */
+    List<TestCaseDto> findAll(String moduleId);
+
+    /**
      * 查询所有用例 -> 分页查询
      * @param pageable
      * @return
      */
     Page<TestCaseDto> findAll(Pageable pageable);
+
+
+
 
     /**
      * 查询某个模块下，对应 index 值得用例

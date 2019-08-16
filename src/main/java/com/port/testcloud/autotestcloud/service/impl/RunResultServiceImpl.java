@@ -42,6 +42,27 @@ public class RunResultServiceImpl implements RunResultService {
     }
 
     @Override
+    public RunResult findByCaseIdAndRunId(String caseId, String runId) {
+        return resultRepository.findByCaseIdAndRunId(caseId, runId);
+    }
+
+    @Override
+    public void jointExceptionMsg(RunResult runResult, String prefixMsg ,Exception e) {
+        String msg = "--------------------------------------------------------------------------> \n"
+                .concat(prefixMsg)
+                .concat(" \n")
+                .concat(e.toString())
+                .concat(" \n");
+        StackTraceElement[] stackTraceElements = e.getStackTrace();
+        for (StackTraceElement stackTraceElement : stackTraceElements) {
+            msg = msg.concat(stackTraceElement.toString());
+        }
+
+        String exceptionMessage = runResult.getExceptionMessage().concat(msg);
+        runResult.setExceptionMessage(exceptionMessage);
+    }
+
+    @Override
     public RunResult save(RunResult runResult) {
         return resultRepository.save(runResult);
     }
@@ -51,7 +72,7 @@ public class RunResultServiceImpl implements RunResultService {
         try {
             resultRepository.findById(id).get();
         } catch (NoSuchElementException e) {
-            log.error("【运行详情结果】查询Id不存在：{}",id);
+            log.error("【运行详情结果】查询Id不存在：{}", id);
             throw new AutoTestException(ResultEnums.RUN_RESULT_ID_NOT_EXIST);
         }
     }

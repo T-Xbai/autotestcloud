@@ -1,5 +1,6 @@
 package com.port.testcloud.autotestcloud.form;
 
+import com.port.testcloud.autotestcloud.utils.JsonUtil;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -37,4 +38,11 @@ public class ModuleForm {
     private Date createTime;
 
     private Date updateTime;
+
+    public static void main(String[] args) {
+        ModuleForm moduleForm = new ModuleForm();
+        System.out.println(JsonUtil.toJson(moduleForm));
+    }
 }
+
+

@@ -4,6 +4,7 @@ import com.port.testcloud.autotestcloud.domain.RunResult;
 import com.port.testcloud.autotestcloud.dto.InfoDto;
 import com.port.testcloud.autotestcloud.dto.TestCaseDto;
 import com.port.testcloud.autotestcloud.service.cases.RunCaseService;
+import com.port.testcloud.autotestcloud.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import org.junit.Test;
@@ -34,9 +35,15 @@ public class RunCaseServiceImplTest {
         infoDto.setRequestMethod("get");
         testCaseDto.setInfo(infoDto);
 
-        RunResult response = runCaseService.runCase("");
-        assert response.getResponseBody() != null;
-        log.info(response.getResponseBody().toString());
+//        RunResult response = runCaseService.runCase("");
+//        assert response.getResponseBody() != null;
+//        log.info(response.getResponseBody().toString());
+
+    }
+
+    @Test
+    public void projectByRunCase() {
+        runCaseService.projectByRunCase("80186151564043751800", KeyUtil.unique());
 
     }
 }

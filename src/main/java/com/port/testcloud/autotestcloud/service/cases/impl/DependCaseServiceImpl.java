@@ -2,6 +2,7 @@ package com.port.testcloud.autotestcloud.service.cases.impl;
 
 import com.port.testcloud.autotestcloud.domain.DependCase;
 import com.port.testcloud.autotestcloud.enums.ResultEnums;
+import com.port.testcloud.autotestcloud.enums.RunOrderEnum;
 import com.port.testcloud.autotestcloud.exception.AutoTestException;
 import com.port.testcloud.autotestcloud.repository.cases.DependCaseRepository;
 import com.port.testcloud.autotestcloud.service.cases.DependCaseService;
@@ -35,6 +36,16 @@ public class DependCaseServiceImpl implements DependCaseService {
     }
 
     @Override
+    public List<DependCase> findByBeforeCase(String caseId) {
+        return dependCaseRepository.findByCaseIdAndOperation(caseId, RunOrderEnum.BEFORE.getCode());
+    }
+
+    @Override
+    public List<DependCase> findByAfterCase(String caseId) {
+        return dependCaseRepository.findByCaseIdAndOperation(caseId, RunOrderEnum.AFTER.getCode());
+    }
+
+    @Override
     public DependCase save(DependCase dependCase) {
         testCaseService.isExist(dependCase.getCaseId());
         dependCaseRepository.save(dependCase);
@@ -51,8 +62,8 @@ public class DependCaseServiceImpl implements DependCaseService {
         DependCase dependCase;
         try {
             dependCase = dependCaseRepository.findById(id).get();
-        } catch (NoSuchElementException e){
-            log.error("【依赖数据查询】dependCaseId 不存在：{}",id);
+        } catch (NoSuchElementException e) {
+            log.error("【依赖数据查询】dependCaseId 不存在：{}", id);
             throw new AutoTestException(ResultEnums.DEPEND_DATA_NOT_EXIST);
         }
         return dependCase;

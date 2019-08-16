@@ -16,7 +16,7 @@ public interface ProjectModulesRepository extends JpaRepository<ProjectModules, 
 
 
     /* 根据父级模块，所有子模块 */
-    @Query("select m from ProjectModules m where  m.parentId=?1 and m.isDelete=?2")
+    @Query("select m from ProjectModules m where  m.parentId=?1 and m.isDelete=?2 order by m.indexs asc")
     List<ProjectModules> findByParentId(String parentId, Integer isDelete);
 
 //    @Query("select m from ProjectModules m where m.projectId=?1 and m.parentId=?2 and m.indexs=?3 and m.isDelete=?4")

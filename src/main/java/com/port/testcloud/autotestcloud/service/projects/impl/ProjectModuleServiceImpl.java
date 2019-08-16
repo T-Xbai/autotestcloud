@@ -102,6 +102,7 @@ public class ProjectModuleServiceImpl implements ProjectModuleService {
                 module.setSonList(sonAll);
             });
         }
+        moduleDtoList.sort(Comparator.comparing(ModuleDto::getIndexs));
         return moduleDtoList;
     }
 
@@ -110,6 +111,7 @@ public class ProjectModuleServiceImpl implements ProjectModuleService {
     public List<ModuleDto> findByParentIdAndIsDelete(String parentId, Integer isDelete) {
 
         List<ProjectModules> byParentIdAndIsDelete = modulesRepository.findByParentId(parentId, isDelete);
+
         return convert(byParentIdAndIsDelete);
     }
 

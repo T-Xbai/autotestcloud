@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Description: 数据库配置
  */
 public interface DbConfigRepository extends JpaRepository<DbConfig,String> {
-
+    
     
 
 }

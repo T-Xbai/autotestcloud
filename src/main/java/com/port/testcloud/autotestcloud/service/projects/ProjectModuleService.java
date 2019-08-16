@@ -26,7 +26,7 @@ public interface ProjectModuleService {
 
 
     /* 查询某个模块下的所有子模块 */
-    List<ModuleDto> findByParentIdAndIsDelete(String projectId, Integer isDelete);
+    List<ModuleDto> findByParentIdAndIsDelete(String parentId, Integer isDelete);
 
 
     ModuleDto save(ModuleDto moduleDto);

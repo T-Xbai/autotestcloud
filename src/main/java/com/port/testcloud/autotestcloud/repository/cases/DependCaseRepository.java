@@ -15,6 +15,7 @@ public interface DependCaseRepository extends JpaRepository<DependCase,String> {
 
     List<DependCase> findByCaseId(String caseId);
 
+    List<DependCase> findByCaseIdAndOperation(String caseId,Integer operation);
 
 
 

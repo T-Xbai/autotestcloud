@@ -20,7 +20,7 @@ public interface TestCaseRepository extends JpaRepository<TestCase, String> {
     Page<TestCase> findAllByIsDelete(Integer isDelete, Pageable pageable);
 
     /**
-     * 根据删除状态，查询模块下所有的 case
+     * 根据删除状态，查询模块下所有的 case - 分页查询
      *
      * @param moduleId
      * @param isDelete
@@ -29,6 +29,16 @@ public interface TestCaseRepository extends JpaRepository<TestCase, String> {
      */
     Page<TestCase> findByModuleIdAndIsDelete(String moduleId, Integer isDelete, Pageable pageable);
 
+
+    /**
+     * 根据删除状态，查询模块下所有的 case
+     *
+     * @param moduleId
+     * @param isDelete
+     * @return
+     */
+    @Query("select t.id from TestCase t where t.moduleId=?1 and t.isDelete=?2 order by t.indexs asc")
+    List<String> findByModuleToAllCaseId(String moduleId, Integer isDelete);
 
     /**
      * 查询模块下的 case 是否存在对应的 indexs
@@ -60,6 +70,7 @@ public interface TestCaseRepository extends JpaRepository<TestCase, String> {
      */
     @Query("select t from TestCase t where t.moduleId=?1 and t.caseName like concat('%',?2,'%') and t.isDelete=?3 ")
     List<TestCase> findByCaseName(String moduleId, String caseName, Integer isDelete);
+
 
 
 }

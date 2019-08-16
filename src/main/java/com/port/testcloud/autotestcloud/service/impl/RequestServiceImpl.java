@@ -30,7 +30,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public Response get(TestCaseDto testCaseDto) throws IOException {
 
-        Request request = request(testCaseDto).build();
+        Request request = request(testCaseDto).get().build();
         return okHttpClient.newCall(request).execute();
     }
 
@@ -71,7 +71,8 @@ public class RequestServiceImpl implements RequestService {
     private Request.Builder request(TestCaseDto testCaseDto) {
         Request.Builder request = new Request.Builder();
         InfoDto info = testCaseDto.getInfo();
-        request.url(info.getRequestUrl());
+        final String requestUrl = info.getRequestUrl();
+        request.url(requestUrl);
         if (!StringUtils.isEmpty(info.getRequestHeaders())) {
             Map<String, Object> headerMap = JsonUtil.toMap(info.getRequestHeaders());
             for (String key : headerMap.keySet()) {

@@ -13,6 +13,10 @@ public interface DependCaseService {
      */
     List<DependCase> findByCaseId(String caseId);
 
+    List<DependCase> findByBeforeCase(String caseId);
+
+    List<DependCase> findByAfterCase(String caseId);
+
     /**
      * 添加修改操作
      * @param dependCase
@@ -25,6 +29,8 @@ public interface DependCaseService {
      * @param id
      */
     void delete(String id);
+
+
 
 
     DependCase isExist(String id);

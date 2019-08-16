@@ -61,7 +61,7 @@ public class DbConfigController {
 
     @PutMapping("{id}")
     @Transactional
-    public ResultVO create(@PathVariable("id") String id,
+    public ResultVO update(@PathVariable("id") String id,
                            @RequestBody @Valid DbConfigForm form,
                            BindingResult result) {
 

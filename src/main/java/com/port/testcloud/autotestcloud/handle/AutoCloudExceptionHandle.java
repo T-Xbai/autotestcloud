@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @Description: 项目异常统一捕获
  */
 @ControllerAdvice
-public class AutoCloudException {
+public class AutoCloudExceptionHandle {
 
 
     @ExceptionHandler(value = AutoTestException.class)

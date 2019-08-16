@@ -33,6 +33,7 @@ public interface ProjectsService {
      */
     Projects save(Projects projects);
 
+    void isExist(String projectId);
 
 
 }

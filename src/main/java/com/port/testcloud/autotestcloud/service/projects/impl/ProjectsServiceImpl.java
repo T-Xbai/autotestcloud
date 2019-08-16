@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @ClassName: ProjectsServiceImpl
@@ -50,6 +51,17 @@ public class ProjectsServiceImpl implements ProjectsService {
             throw new AutoTestException(ResultEnums.PROJECT_NAME_IS_EXIST);
         }
         return repository.save(projects);
+    }
+
+    @Override
+    public void isExist(String projectId) {
+        try {
+            repository.findById(projectId).get();
+        }catch (NoSuchElementException e){
+            log.error("projectId 不存在：{}",projectId);
+            throw new AutoTestException(ResultEnums.PROJECT_ID_NOT_EXIST);
+        }
+
     }
 
 

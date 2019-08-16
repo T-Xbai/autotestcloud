@@ -2,6 +2,8 @@ package com.port.testcloud.autotestcloud.form;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @ClassName: DbOperationForm
  * @CreateUser: wangxiaohao
@@ -15,10 +17,13 @@ public class DbOperationForm {
 
     private String caseId;
 
+    @NotEmpty(message = "dbConfigId 必传")
     private String dbConfigId;
 
     private String runSql;
 
-    private Integer operation;
+    private Integer operation = 0;
+
+    private String dependVariable;
 
 }
